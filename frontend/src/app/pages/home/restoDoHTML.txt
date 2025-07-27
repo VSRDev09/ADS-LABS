@@ -1,0 +1,34 @@
+<div>
+    <button class="btn" (click)="openSection('pratos')">Pratos</button>
+    <div *ngIf="selectedSection === 'pratos'" class="actions">
+      <h2>Pratos</h2>
+      <button class="btn" (click)="getPratos()">GET</button>
+      <button class="btn" (click)="postPrato()">POST</button>
+      <button class="btn" (click)="putPrato()">PUT</button>
+      <button class="btn" (click)="deletePrato()">DELETE</button>
+      <!-- Adicione aqui inputs e listas para pratos, como no clientes -->
+    </div>
+  </div>
+
+  <div>
+    <button class="btn" (click)="openSection('pedidos')">Pedidos</button>
+    <div *ngIf="selectedSection === 'pedidos'" class="actions">
+      <h2>Pedidos</h2>
+      <button class="btn" (click)="getPedidos()">GET</button>
+      <button class="btn" (click)="postPedido()">POST</button>
+      <button class="btn" (click)="putPedido()">PUT</button>
+      <button class="btn" (click)="deletePedido()">DELETE</button>
+      <!-- Inputs e listas para pedidos -->
+    </div>
+  </div>
+
+  <div>
+    <button class="btn" (click)="openSection('relatorios')">Relatórios</button>
+    <div *ngIf="selectedSection === 'relatorios'" class="actions">
+      <h2>Relatórios</h2>
+      <button class="btn" (click)="relatorioClientesMaisPediram()">Clientes que mais pediram</button>
+      <button class="btn" (click)="relatorioClientesMaisGastaram()">Clientes que mais gastaram</button>
+      <button class="btn" (click)="relatorioPratosMaisPedidos()">Pratos mais pedidos</button>
+      <!-- Exiba os resultados desses relatórios conforme o retorno da API -->
+    </div>
+  </div>

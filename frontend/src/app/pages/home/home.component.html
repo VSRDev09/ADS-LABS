@@ -1,0 +1,180 @@
+<h1>Restaurante ADS LABS!</h1>
+<h2>Opções de Requisição:</h2>
+
+<div class="button-container">
+
+  <!-- CLIENTES -->
+  <div>
+    <button class="btn" (click)="openSection('clientes')">Clientes</button>
+    <div *ngIf="selectedSection === 'clientes'" class="actions">
+      <h2>Clientes</h2>
+
+      <button class="btn" (click)="getClientes()">GET</button>
+      <button class="btn" (click)="postCliente()">POST</button>
+      <button class="btn" (click)="putCliente()">PUT</button>
+      <button class="btn" (click)="deleteClientes()">DELETE</button>
+
+      <div style="margin-top:10px;">
+        <div><label>Nome (POST):</label></div>
+        <div><input type="text" [(ngModel)]="clienteParaPost.nome" /></div>
+        <div><label>CPF (POST):</label></div>
+        <div><input type="text" [(ngModel)]="clienteParaPost.cpf" /></div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <div><label>ID (PUT):</label></div>
+        <div><input type="number" [(ngModel)]="clienteParaPut.id" /></div>
+        <div><label>Nome (PUT):</label></div>
+        <div><input type="text" [(ngModel)]="clienteParaPut.nome" /></div>
+        <div><label>CPF (PUT):</label></div>
+        <div><input type="text" [(ngModel)]="clienteParaPut.cpf" /></div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <div><label>ID (DELETE):</label></div>
+        <div><input type="number" [(ngModel)]="idClienteParaDelete" /></div>
+      </div>
+
+      <h3>Lista de Clientes:</h3>
+      <ul>
+        <li *ngFor="let cliente of clientes">
+          ID: {{ cliente.id }} - Nome: {{ cliente.nome }} - CPF: {{ cliente.cpf }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PRATOS -->
+  <div>
+    <button class="btn" (click)="openSection('pratos')">Pratos</button>
+    <div *ngIf="selectedSection === 'pratos'" class="actions">
+      <h2>Pratos</h2>
+
+      <button class="btn" (click)="getPratos()">GET</button>
+      <button class="btn" (click)="postPrato()">POST</button>
+      <button class="btn" (click)="putPrato()">PUT</button>
+      <button class="btn" (click)="deletePrato()">DELETE</button>
+
+      <div style="margin-top:10px;">
+        <div><label>Nome (POST):</label></div>
+        <div><input type="text" [(ngModel)]="pratoParaPost.nome" /></div>
+        <div><label>Preço (POST):</label></div>
+        <div><input type="number" [(ngModel)]="pratoParaPost.preco" /></div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <div><label>ID (PUT):</label></div>
+        <div><input type="number" [(ngModel)]="pratoParaPut.id" /></div>
+        <div><label>Nome (PUT):</label></div>
+        <div><input type="text" [(ngModel)]="pratoParaPut.nome" /></div>
+        <div><label>Preço (PUT):</label></div>
+        <div><input type="number" [(ngModel)]="pratoParaPut.preco" /></div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <div><label>ID (DELETE):</label></div>
+        <div><input type="number" [(ngModel)]="idPratoParaDelete" /></div>
+      </div>
+
+      <h3>Lista de Pratos:</h3>
+      <ul>
+        <li *ngFor="let prato of pratos">
+          ID: {{ prato.id }} - Prato: {{ prato.nome }} - Preço: R${{ prato.preco | number:'1.2-2' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PEDIDOS -->
+  <div>
+    <button class="btn" (click)="openSection('pedidos')">Pedidos</button>
+    <div *ngIf="selectedSection === 'pedidos'" class="actions">
+      <h2>Pedidos</h2>
+
+      <button class="btn" (click)="getPedidos()">GET</button>
+      <button class="btn" (click)="postPedido()">POST</button>
+      <button class="btn" (click)="putPedido()">PUT</button>
+      <button class="btn" (click)="deletePedido()">DELETE</button>
+
+      <div style="margin-top:10px;">
+        <div><label>Quantidade (POST):</label></div>
+        <div><input type="number" [(ngModel)]="pedidoParaPost.quantidade" /></div>
+        <div><label>Cliente ID (POST):</label></div>
+        <div><input type="number" [(ngModel)]="pedidoParaPost.clienteId" /></div>
+        <div><label>Prato ID (POST):</label></div>
+        <div><input type="number" [(ngModel)]="pedidoParaPost.pratoId" /></div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <div><label>ID (PUT):</label></div>
+        <div><input type="number" [(ngModel)]="pedidoParaPut.id" /></div>
+        <div><label>Quantidade (PUT):</label></div>
+        <div><input type="number" [(ngModel)]="pedidoParaPut.quantidade" /></div>
+        <div><label>Cliente ID (PUT):</label></div>
+        <div><input type="number" [(ngModel)]="pedidoParaPut.clienteId" /></div>
+        <div><label>Prato ID (PUT):</label></div>
+        <div><input type="number" [(ngModel)]="pedidoParaPut.pratoId" /></div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <div><label>ID (DELETE):</label></div>
+        <div><input type="number" [(ngModel)]="idPedidoParaDelete" /></div>
+      </div>
+
+      <h3>Lista de Pedidos:</h3>
+      <ul>
+        <li *ngFor="let pedido of pedidos">
+          ID: {{ pedido.id }} - Quantidade: {{ pedido.quantidade }} - Valor Total: R$ {{ pedido.valorTotal |
+          number:'1.2-2' }} -
+          Cliente ID: {{ pedido.clienteId }} <br />Prato ID: {{ pedido.pratoId }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RELATÓRIOS -->
+  <div>
+    <button class="btn" (click)="openSection('relatorios')">Relatórios</button>
+    <div *ngIf="selectedSection === 'relatorios'" class="actions">
+      <h2>Relatórios</h2>
+
+      <button class="btn" (click)="loadReport('pedidos')">Top Clientes Pedidos</button>
+      <button class="btn" (click)="loadReport('gastos')">Top Clientes Gastos</button>
+      <button class="btn" (click)="loadReport('pratos')">Top Pratos Mais Pedidos</button>
+
+
+      <section *ngIf="selectedReport === 'pedidos'" style="margin-top: 15px; margin-bottom: 20px;">
+        <h3>Top 5 Clientes que Mais Fizeram Pedidos:</h3>
+        <ul>
+          <li *ngFor="let cliente of topClientesPedidos; let i = index">
+            {{ i + 1 }}. {{ cliente.cliente }} — {{ cliente.totalPedidos }} pedidos
+          </li>
+        </ul>
+      </section>
+
+      <section *ngIf="selectedReport === 'gastos'">
+        <h3>Top 5 Clientes que Mais Gastaram:</h3>
+        <ul>
+          <li *ngFor="let cliente of topClientesGastos; let i = index">
+            {{ i + 1 }}. {{ cliente.cliente }} — R$ {{ cliente.valorGasto | number:'1.2-2' }}
+          </li>
+        </ul>
+      </section>
+
+
+      <section *ngIf="selectedReport === 'pratos'">
+        <h3>Top 5 Pratos Mais Pedidos:</h3>
+        <ul>
+          <li *ngFor="let prato of pratosMaisPedidos; let i = index">
+            {{ i + 1 }}. {{ prato.prato }} — {{ prato.quantidade }} pedidos
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+
+
+
+
+</div>
