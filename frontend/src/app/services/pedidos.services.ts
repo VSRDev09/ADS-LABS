@@ -33,14 +33,12 @@ export class PedidosService {
   }
 
   
-  putPedido(id: number, pedido: Pedido): Observable<Pedido> {
-    const params = new HttpParams().set('id', id.toString());
-    return this.http.put<Pedido>(this.apiUrl, pedido, { params });
-  }
+putPedido(id: number, pedido: Pedido): Observable<Pedido> {
+  return this.http.put<Pedido>(`${this.apiUrl}/${id}`, pedido);
+}
 
- 
-  deletePedido(id: number): Observable<any> {
-    const params = new HttpParams().set('id', id.toString());
-    return this.http.delete(this.apiUrl, { params });
-  }
+deletePedido(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${id}`);
+}
+
 }
