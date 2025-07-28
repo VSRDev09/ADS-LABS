@@ -16,7 +16,7 @@ O principal objetivo foi criar um sistema de gerenciamento de pedidos simples, c
 - **Node.js**
 - **Express.js**
 - **Sequelize (ORM)**
-- **SQLite3** (como banco de dados)
+- **Postgres** (como banco de dados)
 - **Nodemon** (para hot reload)
 
 ### Front-End
