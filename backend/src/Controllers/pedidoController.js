@@ -1,4 +1,4 @@
-const service = require("../services/pedidoService");
+const service = require("../Services/pedidoService");
 
 function listar(req,res){
     service.listar(req.query)
