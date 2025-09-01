@@ -1,0 +1,92 @@
+# Guia Explicativo do Backend - ADS-LABS
+
+Este arquivo explica toda a estrutura e funcionamento do backend do projeto ADS-LABS, permitindo que você o recrie apenas com esta referência.
+
+---
+
+## Estrutura de Pastas
+
+- backend/
+    - src/
+        - Controllers/
+        - Models/
+        - Services/
+        - middlewares/
+        - validators/
+        - database/
+    - Dockerfile
+    - package.json
+    - .env
+
+---
+
+## Principais Componentes
+
+### 1. Models
+Modelos Sequelize que representam as tabelas do banco de dados:
+- cliente.js: id, nome, cpf
+- prato.js: id, nome, preco (DECIMAL)
+- pedido.js: id, quantidade, valorTotal (DECIMAL), clienteId, pratoId
+
+### 2. Services
+Contêm a lógica de negócio e comunicação com o banco:
+- clienteService.js: listar, criar, atualizar, remover clientes (com validação de nome e CPF)
+- pratoService.js: listar, criar, atualizar, remover pratos (com validação de nome e preço)
+- pedidoService.js: listar, criar, atualizar, remover pedidos (com validação de quantidade, clienteId, pratoId)
+
+### 3. Controllers
+Recebem as requisições HTTP, chamam os services e retornam respostas padronizadas:
+- clienteController.js
+- pratoController.js
+- pedidoController.js
+
+### 4. Middlewares
+Funções que validam dados antes de chegar aos services:
+- middleware.js: valida campos obrigatórios, CPF, nome, preço, quantidade, valorTotal
+
+### 5. Validators
+Funções de validação reutilizáveis:
+- cpfValidator.js: valida CPF
+- pratoValidator.js: valida nome e preço de prato
+- pedidoValidator.js: valida quantidade e valorTotal
+
+### 6. Database
+Configuração do Sequelize e conexão com o banco de dados.
+
+---
+
+## Fluxo de Requisição
+
+1. O usuário faz uma requisição HTTP (ex: POST /clientes).
+2. Middlewares validam os dados recebidos.
+3. Controllers recebem a requisição, chamam o service correspondente.
+4. Services validam novamente os dados e interagem com o banco.
+5. Controllers retornam resposta padronizada (status, mensagem, dados).
+
+---
+
+## Padrões e Boas Práticas
+
+- Validações duplas: tanto em middlewares quanto nos services.
+- Respostas padronizadas e status HTTP corretos (ex: 201 para criação, 204 para remoção).
+- Uso de DECIMAL para valores monetários.
+- Limitação de dados sensíveis nas respostas das rotas.
+- Separação clara de responsabilidades (controllers, services, middlewares, validators).
+
+---
+
+## Como Recriar o Backend
+
+1. Crie a estrutura de pastas conforme acima.
+2. Implemente os models Sequelize para cliente, prato e pedido.
+3. Implemente os services com validações internas e métodos CRUD.
+4. Implemente os controllers para cada entidade, chamando os services e retornando respostas padronizadas.
+5. Implemente middlewares para validação dos dados das requisições.
+6. Implemente validators para CPF, nome, preço, quantidade e valorTotal.
+7. Configure o Sequelize e o banco de dados.
+8. Garanta que as rotas estejam protegidas por middlewares e que os services validem os dados.
+9. Teste todas as rotas e fluxos, garantindo que apenas dados válidos sejam persistidos e retornados.
+
+---
+
+Com este guia, você consegue recriar o backend do ADS-LABS do zero, seguindo boas práticas e garantindo segurança e organização.

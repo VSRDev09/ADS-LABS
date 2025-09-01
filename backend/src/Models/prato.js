@@ -15,8 +15,8 @@ const Prato = database.define("pratos", {
         }
     },
     preco: {
-        type: Sequelize.FLOAT,
-        allowNull:false
+        type: Sequelize.DECIMAL(10,2),
+        allowNull: false
     }
 }, {
     timestamps: true

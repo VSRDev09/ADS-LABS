@@ -35,10 +35,7 @@ function remover(req,res){
         if (!clienteRemovido)
             return res.send({ message: "Cliente não encontrado"});
 
-        return res.send({
-            message: "Cliente removido com sucesso",
-            cliente: clienteRemovido
-        });
+        return res.status(204).send();
     })
     .catch(err => res.status(500).send({ message: err.message}));
 }

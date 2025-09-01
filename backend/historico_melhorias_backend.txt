@@ -1,0 +1,51 @@
+# Histórico de Alterações e Melhorias no Backend
+
+Este arquivo documenta todas as alterações realizadas no backend do projeto ADS-LABS, explicando os problemas encontrados no código original e as melhorias aplicadas.
+
+---
+
+## 1. .gitignore centralizado na raiz
+**Problema:** Existiam múltiplos arquivos `.gitignore` e pastas duplicadas, o que dificultava o controle de arquivos sensíveis e desnecessários.
+**Melhoria:** O `.gitignore` foi movido para a raiz do projeto e configurado para ignorar arquivos e pastas de dependências e variáveis de ambiente de todo o projeto (backend e frontend). O `.gitignore` duplicado foi removido.
+
+---
+
+## 2. Documentação movida para a raiz
+**Problema:** A documentação estava dentro da pasta `backend/src`, dificultando o acesso.
+**Melhoria:** A documentação foi movida para a raiz do projeto e atualizada para incluir limitações e validações dos campos das entidades, facilitando o entendimento para quem consome a API.
+
+---
+
+## 3. Validação de CPF
+**Problema:** A função de validação de CPF estava dentro do service de cliente, não era utilizada no fluxo de cadastro e o middleware só verificava se o campo existia, não se era válido.
+**Melhoria:** A função foi movida para um módulo específico de validações (`validators/cpfValidator.js`). Um middleware foi criado para validar o CPF e integrado à rota de criação de cliente, garantindo que apenas CPFs válidos sejam aceitos.
+
+---
+
+## 4. Validações de campos em middlewares
+**Problema:** Validações de nome, preço, quantidade e valor total estavam misturadas nos services, dificultando reutilização e clareza.
+**Melhoria:** Foram criados módulos de validação para prato e pedido, e middlewares específicos para cada campo. Esses middlewares foram integrados às rotas, tornando o código mais modular e reutilizável.
+
+---
+
+## 5. Identação e duplicidade de funções no pedidoService.js
+**Problema:** O arquivo estava com identação irregular e duplicidade de funções e variáveis, dificultando leitura e manutenção.
+**Melhoria:** O código foi reformatado, eliminando duplicidades e corrigindo a identação, tornando o arquivo limpo e funcional.
+
+---
+
+---
+
+## 8. Dados limitados na listagem de pedidos
+**Problema:** A rota de listagem de pedidos retornava muitos campos desnecessários e duplicados, expondo dados sensíveis e dificultando o consumo da API.
+**Melhoria:** Agora são retornados apenas os campos essenciais: id, quantidade, valorTotal do pedido, e id/nome do cliente e prato. Campos como cpf, createdAt, updatedAt e duplicidade de id foram removidos da resposta.
+
+## 7. Status HTTP 204 No Content nas rotas de remoção
+**Problema:** As rotas de remoção retornavam status 200 OK e um corpo de resposta, o que não segue a convenção REST.
+**Melhoria:** O status foi alterado para 204 No Content e o corpo da resposta foi removido, tornando a API mais padronizada e segura.
+
+## 6. Tipos FLOAT substituídos por DECIMAL em valores monetários
+**Problema:** Os campos `preco` (prato) e `valorTotal` (pedido) estavam definidos como FLOAT, o que pode causar problemas de precisão em valores monetários.
+**Melhoria:** Os tipos foram alterados para DECIMAL(10,2), garantindo precisão e evitando inconsistências no banco de dados.
+
+A cada nova alteração, este arquivo será atualizado para fins de estudo e acompanhamento das melhorias.

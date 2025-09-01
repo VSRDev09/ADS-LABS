@@ -35,10 +35,7 @@ function remover(req,res){
         if (!pedidoRemovido)
             return res.send({ message: "Pedido não encontrado"});
 
-        return res.send({
-            message: "Pedido removido com sucesso",
-            pedido: pedidoRemovido
-        });
+        return res.status(204).send();
     })
     .catch(err => res.status(500).send({ message: err.message}));
 }

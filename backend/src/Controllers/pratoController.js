@@ -35,10 +35,7 @@ function remover(req,res){
         if (!pratoRemovido)
             return res.send({ message: "Prato não encontrado"});
 
-        return res.send({
-            message: "Prato removido com sucesso",
-            prato: pratoRemovido
-        });
+        return res.status(204).send();
     })
     .catch(err => res.status(500).send({ message: err.message}));
 }

@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const ClienteController = require("../Controllers/clienteController");
-const { checkNome, checkCpf } = require("../middlewares/middleware");
+const { checkNome, checkCpf, checkCpfValido } = require("../middlewares/middleware");
 
 // Criar cliente
-router.post("/", checkNome, checkCpf, ClienteController.criar);
+router.post("/", checkNome, checkCpf, checkCpfValido, ClienteController.criar);
 
 //Listar todos os clientes
 router.get("/", ClienteController.listar);

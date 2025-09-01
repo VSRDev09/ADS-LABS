@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const PratoController = require("../Controllers/pratoController");
-const { checkNomePrato, checkPreco } = require("../middlewares/middleware");
+const { checkNomePrato, checkPreco, checkNomePratoValido, checkPrecoValido } = require("../middlewares/middleware");
 
 // Criar prato
-router.post("/", checkNomePrato, checkPreco, PratoController.criar);
+router.post("/", checkNomePrato, checkPreco, checkNomePratoValido, checkPrecoValido, PratoController.criar);
 
 // Listar todos os pratos
 router.get("/", PratoController.listar);
