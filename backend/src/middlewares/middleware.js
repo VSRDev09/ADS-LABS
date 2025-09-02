@@ -29,7 +29,7 @@ const { validarCPF } = require("../validators/cpfValidator");
 const checkNome = checkCampoObrigatorio("nome", "nome");
 
 const checkCpfValido = (req, res, next) => {
-    const cpf = req.body;
+    const { cpf } = req.body;
 
     if (!cpf) {
         return res.status(400).json({ message: "CPF é obrigatório" });

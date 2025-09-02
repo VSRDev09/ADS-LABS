@@ -11,7 +11,7 @@ router.post("/", checkNomePrato, checkPreco, checkNomePratoValido, checkPrecoVal
 router.get("/", PratoController.listar);
 
 // Atualizar prato
-router.put("/:id", PratoController.atualizar);
+router.put("/:id", checkNomePrato, checkPreco, checkNomePratoValido, checkPrecoValido, PratoController.atualizar);
 
 // Deletar prato
 router.delete("/:id", PratoController.remover);

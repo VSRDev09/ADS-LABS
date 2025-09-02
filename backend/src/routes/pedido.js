@@ -12,7 +12,7 @@ router.post("/", checkQuantidadeValida, checkValorTotalValido, PedidoController.
 router.get("/", PedidoController.listar);
 
 // Atualizar pedido
-router.put("/:id", PedidoController.atualizar);
+router.put("/:id", checkQuantidadeValida, checkValorTotalValido, PedidoController.atualizar);
 
 // Deletar pedido
 router.delete("/:id", PedidoController.remover);
