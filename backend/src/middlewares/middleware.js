@@ -16,8 +16,8 @@ const checkValorTotalValido = (req, res, next) => {
 };
 function checkCampoObrigatorio(campo, nomeCampo) {
     return (req, res, next) => {
-        if (!req.body[campo]){
-            return res.status(400).json({ message: `Por favor envie o campo: ${nomeCampo}`});
+        if (!req.body[campo]) {
+            return res.status(400).json({ message: `Por favor envie o campo: ${nomeCampo}` });
         }
         next();
     };
@@ -27,9 +27,15 @@ function checkCampoObrigatorio(campo, nomeCampo) {
 const { validarCPF } = require("../validators/cpfValidator");
 
 const checkNome = checkCampoObrigatorio("nome", "nome");
-const checkCpf = checkCampoObrigatorio("cpf", "CPF");
+
 const checkCpfValido = (req, res, next) => {
-    if (!validarCPF(req.body.cpf)) {
+    const cpf = req.body;
+
+    if (!cpf) {
+        return res.status(400).json({ message: "CPF é obrigatório" });
+    }
+
+    if (!validarCPF(cpf)) {
         return res.status(400).json({ message: "CPF inválido" });
     }
     next();
@@ -57,7 +63,6 @@ const checkPrecoValido = (req, res, next) => {
 
 module.exports = {
     checkNome,
-    checkCpf,
     checkCpfValido,
     checkPreco,
     checkNomePrato,

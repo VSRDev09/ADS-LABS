@@ -5,7 +5,7 @@ const ClienteController = require("../Controllers/clienteController");
 const { checkNome, checkCpf, checkCpfValido } = require("../middlewares/middleware");
 
 // Criar cliente
-router.post("/", checkNome, checkCpf, checkCpfValido, ClienteController.criar);
+router.post("/", checkNome, checkCpfValido, ClienteController.criar);
 
 //Listar todos os clientes
 router.get("/", ClienteController.listar);
