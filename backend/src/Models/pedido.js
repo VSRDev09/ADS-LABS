@@ -17,7 +17,7 @@ const Pedido = database.define("pedidos", {
     },
 
     valorTotal: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(10,2),
         allowNull: false
     },
 
